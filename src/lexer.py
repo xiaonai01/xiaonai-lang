@@ -5,7 +5,7 @@
 将源代码分解成词法单元
 """
 from typing import List, Optional
-from .tokens import Token, TokenType, KEYWORDS, OPERATORS, DELIMITERS
+from tokens import Token, TokenType, KEYWORDS, OPERATORS, DELIMITERS
 
 class LexerError(Exception):
     """词法分析错误"""

@@ -6,7 +6,7 @@
 """
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Any, List, Optional
+from typing import Any, List, Optional, Union
 
 class ASTNode(ABC):
     """抽象语法树节点基类"""
@@ -19,7 +19,7 @@ class ASTNode(ABC):
 @dataclass
 class NumberLiteral(ASTNode):
     """数字字面量"""
-    value: int | float
+    value: Union[int, float]
     
     def accept(self, visitor):
         return visitor.visit_number_literal(self)

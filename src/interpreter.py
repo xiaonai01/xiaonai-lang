@@ -5,8 +5,8 @@
 执行抽象语法树
 """
 from typing import Any, Dict, List, Optional
-from .ast import *
-from .tokens import TokenType
+from ast_nodes import *
+from tokens import TokenType
 
 class ReturnException(Exception):
     """返回语句异常"""
@@ -32,6 +32,17 @@ class Environment:
     
     def set(self, name: str, value: Any):
         """设置变量值"""
+        # 如果变量在当前环境中存在，直接设置
+        if name in self.variables:
+            self.variables[name] = value
+            return
+        
+        # 如果变量在父环境中存在，递归设置
+        if self.parent:
+            self.parent.set(name, value)
+            return
+        
+        # 如果变量不存在，创建新变量
         self.variables[name] = value
     
     def define(self, name: str, value: Any):
@@ -315,8 +326,8 @@ class Interpreter(ASTVisitor):
 
 def run(source: str):
     """运行小奈语言代码"""
-    from .lexer import lex
-    from .parser import parse
+    from lexer import lex
+    from parser import parse
     
     # 词法分析
     tokens = lex(source)

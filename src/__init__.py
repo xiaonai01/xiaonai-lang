@@ -6,11 +6,11 @@
 __version__ = "1.0.0"
 __author__ = "小奈 (XiaoNai)"
 
-from .lexer import lex, Lexer
-from .parser import parse, Parser
-from .interpreter import Interpreter, run
-from .tokens import Token, TokenType
-from .ast import *
+from lexer import lex, Lexer
+from parser import parse, Parser
+from interpreter import Interpreter, run
+from tokens import Token, TokenType
+from ast_nodes import *
 
 __all__ = [
     'lex', 'Lexer',

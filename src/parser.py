@@ -5,8 +5,8 @@
 将词法单元流转换成抽象语法树
 """
 from typing import List, Optional
-from .tokens import Token, TokenType
-from .ast import *
+from tokens import Token, TokenType
+from ast_nodes import *
 
 class ParserError(Exception):
     """语法分析错误"""
@@ -134,6 +134,11 @@ class Parser:
         """解析if语句"""
         self.expect(TokenType.IF)
         condition = self.parse_expression()
+        
+        # 跳过可选的"那么"关键字
+        if self.current_token and self.current_token.type == TokenType.THEN:
+            self.advance()
+        
         self.skip_newlines()
         
         # 解析then分支
@@ -176,6 +181,11 @@ class Parser:
         """解析while循环"""
         self.expect(TokenType.WHILE)
         condition = self.parse_expression()
+        
+        # 跳过可选的"做"关键字
+        if self.current_token and self.current_token.type == TokenType.DO:
+            self.advance()
+        
         self.skip_newlines()
         
         body = []

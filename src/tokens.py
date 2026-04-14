@@ -12,6 +12,7 @@ class TokenType(Enum):
     """词法单元类型"""
     # 字面量
     NUMBER = auto()      # 数字
+    FLOAT = auto()       # 浮点数
     STRING = auto()      # 字符串
     BOOLEAN = auto()     # 布尔值
     NULL = auto()        # 空值
@@ -35,6 +36,8 @@ class TokenType(Enum):
     OR = auto()          # 或
     NOT = auto()         # 非
     END = auto()         # 结束
+    THEN = auto()        # 那么
+    DO = auto()          # 做
     
     # 运算符
     PLUS = auto()        # +
@@ -49,6 +52,7 @@ class TokenType(Enum):
     GREATER = auto()     # >
     LESS_EQUAL = auto()  # <=
     GREATER_EQUAL = auto() # >=
+    BANG = auto()        # !
     
     # 分隔符
     LPAREN = auto()      # (
@@ -115,6 +119,7 @@ OPERATORS = {
     '>': TokenType.GREATER,
     '<=': TokenType.LESS_EQUAL,
     '>=': TokenType.GREATER_EQUAL,
+    '!': TokenType.BANG,
 }
 
 # 分隔符映射
